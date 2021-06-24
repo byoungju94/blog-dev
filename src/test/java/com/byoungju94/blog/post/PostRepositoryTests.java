@@ -1,8 +1,12 @@
 package com.byoungju94.blog.post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
@@ -25,6 +29,26 @@ public class PostRepositoryTests {
 
         // then
         assertEquals(post, actual);
+    }
+
+    @Test
+    void softDelete() {
+        // given
+        Post post = posts.stream().findFirst().get();
+        post = this.sut.save(post);
+
+        // when
+        this.sut.delete(post);
+
+        // then
+        assertEquals(PostState.DELETED, post.getState());
+
+        Optional<Post> load = this.sut.findById(post.getId());
+        assertTrue(load.isPresent());
+        assertEquals(PostState.DELETED, load.get().getState());
+
+        Optional<Post> exclude = this.sut.findByIdExcludeDeleted(post.getId());
+        assertEquals(Optional.empty(), exclude);
     }
 
     private final List<Post> posts =  List.of(

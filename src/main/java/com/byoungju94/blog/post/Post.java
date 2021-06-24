@@ -13,7 +13,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class Post implements Persistable {
+public class Post implements Persistable<UUID> {
 
     @Id
     private UUID id;
@@ -23,7 +23,6 @@ public class Post implements Persistable {
     private Long authorId;
     private PostState state;
 
-    @Transient
     @JsonIgnore
     private Boolean isInsert;
 
