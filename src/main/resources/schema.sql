@@ -7,3 +7,14 @@ CREATE TABLE post (
     created_at TIMESTAMP NOT NULL,
     state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
 );
+
+CREATE TABLE account (
+    id VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone VARCHAR(255),
+    name VARCHAR(255) NOT NULL,
+    is_insert BOOLEAN,
+    created_at TIMESTAMP NOT NULL,
+    state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
+)

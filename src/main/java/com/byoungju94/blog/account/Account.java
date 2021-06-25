@@ -25,6 +25,7 @@ public class Account implements Persistable<UUID> {
     private String username;
     private String password;
     private String name;
+    private String phone;
 
     private AccountState state;
 
