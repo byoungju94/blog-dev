@@ -4,5 +4,6 @@ CREATE TABLE post (
     author_id BIGINT NOT NULL,
     is_insert BOOLEAN,
     content_file_path VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL,
     state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
 );

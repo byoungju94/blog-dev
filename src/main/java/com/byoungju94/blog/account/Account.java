@@ -1,4 +1,4 @@
-package com.byoungju94.blog.post;
+package com.byoungju94.blog.account;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -6,24 +6,27 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.domain.Persistable;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 @Builder
 @Getter
-public class Post implements Persistable<UUID> {
-
+@EqualsAndHashCode(of = "id")
+@ToString
+public class Account implements Persistable<UUID> {
+    
     @Id
     private UUID id;
 
-    private String title;
-    private String contentFilePath;
-    private Long authorId;
-    
-    private PostState state;
+    private String username;
+    private String password;
+    private String name;
+
+    private AccountState state;
 
     @JsonIgnore
     private Boolean isInsert;
@@ -32,16 +35,16 @@ public class Post implements Persistable<UUID> {
     private Instant createdAt = Instant.now();
 
     public void lock() {
-        this.state = PostState.LOCKED;
+        this.state = AccountState.LOCKED;
     }
 
     public void delete() {
-        this.state = PostState.DELETED;
+        this.state = AccountState.DELETED;
     }
 
     @Override
-    @JsonIgnore
     public boolean isNew() {
         return isInsert;
     }
+
 }
