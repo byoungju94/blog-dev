@@ -1,5 +1,8 @@
 # This is byoungju94's deb blog.
 
+## URL
+- http://blog.byoungju94.me (soon update https protocol)
+
 ## Language
 - JAVA
 
