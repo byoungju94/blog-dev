@@ -58,7 +58,7 @@ public class PostRepositoryTests {
         Post.builder()
             .id(UUID.randomUUID())
             .title("What is aggregate root?")
-            .authorId(authorId)
+            .authorId(this.authorId)
             .contentFilePath("s3://aggregate_root.markdown")
             .isInsert(true)
             .build(),
@@ -66,7 +66,7 @@ public class PostRepositoryTests {
         Post.builder()
             .id(UUID.randomUUID())
             .title("What is Event Sourcing")
-            .authorId(authorId)
+            .authorId(this.authorId)
             .contentFilePath("s3://event_sourcing.markdown")
             .isInsert(true)
             .build()
