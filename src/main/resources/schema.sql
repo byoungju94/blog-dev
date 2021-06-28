@@ -1,7 +1,7 @@
 CREATE TABLE post (
     id VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    author_id BIGINT NOT NULL,
+    author_id VARCHAR(255) NOT NULL,
     is_insert BOOLEAN,
     content_file_path VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,

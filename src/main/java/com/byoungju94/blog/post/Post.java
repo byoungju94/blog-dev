@@ -3,10 +3,12 @@ package com.byoungju94.blog.post;
 import java.time.Instant;
 import java.util.UUID;
 
+import com.byoungju94.blog.account.Account;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -20,9 +22,8 @@ public class Post implements Persistable<UUID> {
 
     private String title;
     private String contentFilePath;
-    private Long authorId;
-    
     private PostState state;
+    private AggregateReference<Account, UUID> authorId;
 
     @JsonIgnore
     private Boolean isInsert;
