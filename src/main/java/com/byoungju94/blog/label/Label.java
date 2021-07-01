@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import com.byoungju94.blog.post.Post;
 
-import org.h2.api.Aggregate;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.data.annotation.Id;
