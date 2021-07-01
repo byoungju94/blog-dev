@@ -17,4 +17,11 @@ CREATE TABLE account (
     is_insert BOOLEAN,
     created_at TIMESTAMP NOT NULL,
     state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
-)
+);
+
+CREATE TABLE label (
+    id VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    color VARCHAR(255) NOT NULL,
+    post_id VARCHAR(255) NOT NULL
+);
