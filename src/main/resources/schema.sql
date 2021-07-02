@@ -25,3 +25,17 @@ CREATE TABLE label (
     color VARCHAR(255) NOT NULL,
     post_id VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE comment (
+    id VARCHAR(255) NOT NULL,
+    version INT NOT NULL,
+    post_id VARCHAR(255) NOT NULL,
+    writer_id VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE comment_content (
+    comment_id VARCHAR(255) NOT NULL,
+    body VARCHAR(255) NOT NULL,
+    mime_type VARCHAR(255) NOT NULL
+);
