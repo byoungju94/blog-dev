@@ -1,4 +1,4 @@
-# This is byoungju94's deb blog.
+# This is byoungju94's dev blog.
 
 ## URL
 - http://blog.byoungju94.me (soon update https protocol)
@@ -7,8 +7,7 @@
 - JAVA
 
 ## Architecture
-- domain design driven
-- MVC
+- domain driven design
 
 ## Dependencies
 - spring boot
