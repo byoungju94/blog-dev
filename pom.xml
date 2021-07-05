@@ -11,8 +11,8 @@
 	<groupId>com.byoungju94</groupId>
 	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>blog</name>
-	<description>Demo project for Spring Boot</description>
+	<name>blog-dev</name>
+	<description>byoungju94's blog-dev</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -26,18 +26,22 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-relational</artifactId>
-			<version>2.2.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-relational</artifactId>
+			<version>2.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
