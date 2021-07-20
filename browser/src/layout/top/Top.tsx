@@ -1,33 +1,34 @@
-import React from 'react';
+import Category from "../../domain/category/Category";
 
-function Top() {
-    return (
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">Fixed navbar</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <ul className="navbar-nav mr-auto mb-2 mb-md-0">
-                        <li className="nav-item active">
-                            <a className="nav-link" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" href="#" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                    <form className="d-flex">
-                        <input className="form-control mr-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    )
+export default class Top {
+
+    private readonly categories: Array<Category>
+    private categoryElement: HTMLUListElement;
+
+    constructor(categories: Array<Category>) {
+        this.categories = categories;
+        this.categoryElement = document.createElement('ul');
+        this.categoryElement.className = "list-group list-group-horizontal";
+
+        this.renderHorizontalListGroup();
+    }
+
+    private renderHorizontalListGroup() {
+        this.categories.map(category => {
+            const li = document.createElement("li");
+            li.className = "list-group-item";
+            li.dataset.id = category.id;
+            li.textContent = category.name;
+            return li;
+        }).forEach(element => {
+            this.categoryElement.appendChild(element);
+        });        
+    }
+
+    getElement() {
+        const div = document.createElement("div");
+        div.className = "container";
+        div.appendChild(this.categoryElement);
+        return div;
+    }
 }
-
-export default Top;

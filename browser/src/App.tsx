@@ -8,9 +8,6 @@ import Middle from './layout/middle/Middle';
 function App() {
   return (
     <div className="d-flex flex-column h-100">
-      <Top></Top>
-      <Middle></Middle>
-      <Bottom></Bottom>
     </div>
   );
 }

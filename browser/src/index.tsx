@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import Category from './domain/category/Category';
 import './index.css';
-import Bottom from './layout/bottom/Bottom';
-import Middle from './layout/middle/Middle';
 import Top from './layout/top/Top';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render([<Top />, <Middle />, <Bottom />], document.getElementById('root'));
+const categories = [];
+categories.push(new Category("UFHWNVOW123", "JAVA"));
+categories.push(new Category("UFHWNVOW123", "SpringFramework"));
+categories.push(new Category("UFHWNVOW123", "MySQL"));
 
-reportWebVitals();
+const layoutTop = new Top(categories);
+document.getElementById('root')?.appendChild(layoutTop.getElement());
