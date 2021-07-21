@@ -1,4 +1,4 @@
-# byoungju94 BLOG
+# byoungju94's blog
 
 ## URL
 - http://blog.byoungju94.me
