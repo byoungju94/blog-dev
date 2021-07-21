@@ -16,3 +16,8 @@
 - spring data jdbc
 - h2
 - mysql
+
+## Infrastructure
+- docker
+- nginx
+- server spec: dell optiplex 7080
