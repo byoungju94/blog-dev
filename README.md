@@ -9,6 +9,7 @@
 
 ## Architecture
 - Domain Driven Design
+- REST API
 
 ## Dependencies
 - spring boot
