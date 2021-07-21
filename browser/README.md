@@ -1,7 +1,7 @@
 # blog-dev-frontend
-using plain javascript/typescript
-mainly using createElement
-not using jsx/tsx or innerHTML
+- using plain javascript/typescript
+- mainly using createElement
+- not using jsx/tsx or innerHTML
 
 ## Available Scripts
 
