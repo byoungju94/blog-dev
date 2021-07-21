@@ -10,6 +10,8 @@
 ## Architecture
 - Domain Driven Design
 - REST API
+- Event Sourcing
+- CQRS
 
 ## Dependencies
 - spring boot
