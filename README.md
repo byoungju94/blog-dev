@@ -12,6 +12,7 @@
 - REST API
 - Event Sourcing
 - CQRS
+- Test Driven Development
 
 ## Dependencies
 - spring boot
