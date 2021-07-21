@@ -7,10 +7,8 @@
 - JAVA
 - TYPESCRIPT
 
-
-
 ## Architecture
-- domain driven design
+- Domain Driven Design
 
 ## Dependencies
 - spring boot
