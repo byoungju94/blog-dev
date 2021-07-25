@@ -1,11 +1,24 @@
-CREATE TABLE post (
+CREATE TABLE tbl_post (
     id VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    author_id VARCHAR(255) NOT NULL,
-    is_insert BOOLEAN,
-    content_file_path VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL,
-    state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
+    state VARCHAR(30) CHECK (state in ('OPENED', 'BLOCKED', 'HIDDEN', 'DELETED')),
+    account_id VARCHAR(255) NOT NULL,
+    category_id VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE tbl_content (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    uuid VARCHAR(255) NOT NULL,
+    file_path VARCHAR(255) NOT NULL,
+    order_num VARCHAR(255) NOT NULL,
+    state VARCHAR(30) CHECK (state in ('OPENED', 'BLOCKED', 'HIDDEN')),
+    post_id VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE category (
+    id VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE account (

@@ -9,15 +9,11 @@ import org.springframework.data.domain.Persistable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.ToString;
 
 @Builder
 @AllArgsConstructor
 @Getter
-@EqualsAndHashCode(of = "id")
-@ToString
 public class Category implements Persistable<UUID> {
     
     @Id
@@ -25,6 +21,7 @@ public class Category implements Persistable<UUID> {
 
     private String name;
 
+    @Builder.Default
     @Transient
     private Boolean isNew = true;
 
