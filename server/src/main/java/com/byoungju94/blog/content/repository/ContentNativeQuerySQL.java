@@ -1,8 +1,10 @@
 package com.byoungju94.blog.content.repository;
 
-public class ContentNativeQuerySQL {
+public final class ContentNativeQuerySQL {
 
-    public static String findByPostId = """
+    private ContentNativeQuerySQL() {}
+
+    public static final String findByPostId = """
             SELECT *
             FROM tbl_content as c1
                 INNER JOIN (SELECT MAX(id) as id FROM tbl_content GROUP BY uuid) as c2
@@ -10,7 +12,7 @@ public class ContentNativeQuerySQL {
             WHERE post_id = :post_id AND state = :state
             """;
 
-    public static String findByLatestOfUuid = """
+    public static final String findByLatestOfUuid = """
             SELECT *
             FROM tbl_content
             GROUP BY uuid

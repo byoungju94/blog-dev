@@ -16,13 +16,24 @@ CREATE TABLE tbl_content (
     post_id VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE tbl_comment (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    uuid VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    state VARCHAR(255) CHECK (state int ('OPENED, BLOCKED, DELETED')),
+    created_at TIMESTAMP NOT NULL,
+    account_id VARCHAR(255) NOT NULL,
+    post_id VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE category (
     id VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE account (
-    id VARCHAR(255) NOT NULL,
+CREATE TABLE tbl_account (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    uuid VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(255),

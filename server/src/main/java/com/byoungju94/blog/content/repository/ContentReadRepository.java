@@ -1,10 +1,9 @@
 package com.byoungju94.blog.content.repository;
 
+import java.util.List;
+
 import com.byoungju94.blog.content.Content;
 import com.byoungju94.blog.content.dto.ContentDTO;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface ContentReadRepository {
 

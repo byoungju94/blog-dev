@@ -34,13 +34,13 @@ public class Content implements Persistable<Long> {
     @Transient
     private boolean isNew = true;
 
+    public void delete() {
+        this.state = ContentState.DELETED;
+    }
+
     @Override
     public boolean isNew() {
         return this.isNew;
-    }
-
-    public void delete() {
-        this.state = ContentState.DELETED;
     }
 
     @Builder
@@ -80,6 +80,4 @@ public class Content implements Persistable<Long> {
             return Ordered.HIGHEST_PRECEDENCE;
         }
     }
-
-
 }

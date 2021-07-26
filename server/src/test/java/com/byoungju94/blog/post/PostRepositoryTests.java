@@ -120,5 +120,4 @@ public class PostRepositoryTests {
             .isNew(true)
             .build()
     );
-    
 }

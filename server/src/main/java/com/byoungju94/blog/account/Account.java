@@ -1,4 +1,6 @@
-package com.byoungju94.blog.category;
+package com.byoungju94.blog.account;
+
+import java.time.Instant;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.Ordered;
@@ -14,42 +16,45 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Table("tbl_category")
-public class Category implements Persistable<Long> {
+@Table("tbl_content")
+public class Account implements Persistable<Long> {
 
     @Id
     private Long id;
 
     private String uuid;
-    private String name;
-    private CategoryState state;
+    private String username;
+    private String password;
+    private Instant createdAt;
+    private AccountState state;
 
     @Transient
     private boolean isNew = true;
-
+    
     @Override
     public boolean isNew() {
         return this.isNew;
     }
 
     @Builder
-    public Category(String uuid, String name, CategoryState state) {
+    public Account(String uuid, String username, String password, Instant createdAt) {
         this.uuid = uuid;
-        this.name = name;
-        this.state = state;
+        this.username = username;
+        this.password = password;
+        this.createdAt = createdAt;
     }
 
     @PersistenceConstructor
-    public Category(Long id, String uuid, String name, CategoryState state) {
+    public Account(Long id, String uuid, String password, Instant createdAt) {
         this.id = id;
         this.uuid = uuid;
-        this.name = name;
-        this.state = state;
+        this.password = password;
+        this.createdAt = createdAt;
         this.isNew = false;
     }
 
     @Component
-    public static class CategoryAfterSaveListener implements ApplicationListener<AfterSaveEvent<?>>, Ordered {
+    public static class AccountAfterSaveListener implements ApplicationListener<AfterSaveEvent<?>>, Ordered {
 
         @Override
         public int getOrder() {
@@ -58,11 +63,9 @@ public class Category implements Persistable<Long> {
 
         @Override
         public void onApplicationEvent(AfterSaveEvent<?> event) {
-            if (event.getEntity() instanceof Category) {
-                ((Category) event.getEntity()).isNew = false;
+            if (event.getEntity() instanceof Account) {
+                ((Account) event.getEntity()).isNew = false;
             }
         }
-
     }
-
 }
