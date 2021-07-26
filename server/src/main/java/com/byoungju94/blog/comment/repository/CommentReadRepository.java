@@ -2,10 +2,9 @@ package com.byoungju94.blog.comment.repository;
 
 import java.util.List;
 
-import com.byoungju94.blog.comment.Comment;
+import com.byoungju94.blog.comment.dto.CommentDTO;
 
 public interface CommentReadRepository {
 
-    List<Comment> findByPostIdWithPaging(String postId, int startPage, int perPageSize);
-    
+    List<CommentDTO> findByPostIdWithPaging(String postId, int startPage, int perPageSize);
 }

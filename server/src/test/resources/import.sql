@@ -1,5 +1,3 @@
-USE blog_dev;
-
 CREATE TABLE tbl_post (
     seq INT NOT NULL AUTO_INCREMENT primary key,
     id VARCHAR(255) NOT NULL,
@@ -8,7 +6,7 @@ CREATE TABLE tbl_post (
     account_id VARCHAR(255) NOT NULL,
     category_id VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE tbl_comment (
     seq INT NOT NULL AUTO_INCREMENT primary key,
@@ -18,7 +16,7 @@ CREATE TABLE tbl_comment (
     created_at TIMESTAMP NOT NULL,
     account_id VARCHAR(255) NOT NULL,
     post_id VARCHAR(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 CREATE TABLE tbl_account (
     seq INT NOT NULL AUTO_INCREMENT primary key,
@@ -28,8 +26,4 @@ CREATE TABLE tbl_account (
     name VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL,
     state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-show tables;
-
-select * from tbl_account;
+);

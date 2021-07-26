@@ -1,5 +1,8 @@
 package com.byoungju94.blog.comment;
 
+import java.time.Instant;
+import java.util.UUID;
+
 import com.byoungju94.blog.account.Account;
 import com.byoungju94.blog.post.Post;
 
@@ -16,20 +19,21 @@ import org.springframework.stereotype.Component;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 @Table("tbl_comment")
-public class Comment implements Persistable<Long> {
-
-    private Long id;
+public class Comment implements Persistable<UUID> {
 
     @Id
-    private String uuid;
+    private UUID id;
     private String content;
     private CommentState state;
+    private Instant createdAt;
 
-    private AggregateReference<Post, Long> postId;
-    private AggregateReference<Account, Long> accountId;
+    private AggregateReference<Post, UUID> postId;
+    private AggregateReference<Account, UUID> accountId;
 
     @Transient
     private boolean isNew = true;
@@ -40,29 +44,33 @@ public class Comment implements Persistable<Long> {
     }
 
     @Builder
-    public Comment(String uuid, 
+    public Comment(UUID id, 
                    String content,
                    CommentState state,
-                   AggregateReference<Post, Long> postId,
-                   AggregateReference<Account, Long> accountId) {
-        this.uuid = uuid;
+                   Instant createdAt,
+                   AggregateReference<Post, UUID> postId,
+                   AggregateReference<Account, UUID> accountId,
+                   boolean isNew) {
+        this.id = id;
         this.content = content;
         this.state = state;
+        this.createdAt = createdAt;
         this.postId = postId;
         this.accountId = accountId;
+        this.isNew = isNew;
     }
 
     @PersistenceConstructor
-    public Comment(Long id, 
-                   String uuid, 
+    public Comment(UUID id, 
                    String content, 
                    CommentState state,
-                   AggregateReference<Post, Long> postId,
-                   AggregateReference<Account, Long> accountId) {
+                   Instant createdAt,
+                   AggregateReference<Post, UUID> postId,
+                   AggregateReference<Account, UUID> accountId) {
         this.id = id;
-        this.uuid = uuid;
         this.content = content;
         this.state = state;
+        this.createdAt = createdAt;
         this.postId = postId;
         this.accountId = accountId;
         this.isNew = false;

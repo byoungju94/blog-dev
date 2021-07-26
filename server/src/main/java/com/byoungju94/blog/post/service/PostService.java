@@ -29,13 +29,13 @@ public class PostService {
 
     @Transactional
     public List<PostDTO> searchByTitle(String categoryId, String title, Pageable pageable) {
-        return this.postRepository.findByCategoryIdAndTitleWithPaging(categoryId, title, pageable)
+        return this.postRepository.findByCategoryIdAndTitleWithPaging(categoryId, title)
                 .stream()
                 .map(this::mapToPostDTO)
                 .collect(Collectors.toList());
     }
 
     private PostDTO mapToPostDTO(Post post) {
-        return new PostDTO(post.getUuid(), post.getTitle(), post.getCreatedAt());
+        return new PostDTO(post.getId(), post.getTitle(), post.getCreatedAt());
     }
 }

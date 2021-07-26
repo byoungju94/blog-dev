@@ -16,15 +16,14 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Table("tbl_content")
-public class Account implements Persistable<Long> {
+@Table("tbl_account")
+public class Account implements Persistable<String> {
 
     @Id
-    private Long id;
-
-    private String uuid;
+    private String id;
     private String username;
     private String password;
+    private String name;
     private Instant createdAt;
     private AccountState state;
 
@@ -37,18 +36,23 @@ public class Account implements Persistable<Long> {
     }
 
     @Builder
-    public Account(String uuid, String username, String password, Instant createdAt) {
-        this.uuid = uuid;
+    public Account(String id, String username, String password, String name, AccountState state, Instant createdAt, boolean isNew) {
+        this.id = id;
         this.username = username;
+        this.name = name;
         this.password = password;
+        this.state = state;
         this.createdAt = createdAt;
+        this.isNew = isNew;
     }
 
     @PersistenceConstructor
-    public Account(Long id, String uuid, String password, Instant createdAt) {
+    public Account(String id, String username, String password, String name, AccountState state, Instant createdAt) {
         this.id = id;
-        this.uuid = uuid;
+        this.username = username;
         this.password = password;
+        this.name = name;
+        this.state = state;
         this.createdAt = createdAt;
         this.isNew = false;
     }
