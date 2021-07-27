@@ -1,7 +1,6 @@
 package com.byoungju94.blog.comment;
 
 import java.time.Instant;
-import java.util.UUID;
 
 import com.byoungju94.blog.account.Account;
 import com.byoungju94.blog.post.Post;
@@ -24,16 +23,16 @@ import lombok.ToString;
 @Getter
 @ToString
 @Table("tbl_comment")
-public class Comment implements Persistable<UUID> {
+public class Comment implements Persistable<String> {
 
     @Id
-    private UUID id;
+    private String id;
     private String content;
     private CommentState state;
     private Instant createdAt;
 
-    private AggregateReference<Post, UUID> postId;
-    private AggregateReference<Account, UUID> accountId;
+    private AggregateReference<Post, String> postId;
+    private AggregateReference<Account, String> accountId;
 
     @Transient
     private boolean isNew = true;
@@ -44,12 +43,12 @@ public class Comment implements Persistable<UUID> {
     }
 
     @Builder
-    public Comment(UUID id, 
+    public Comment(String id, 
                    String content,
                    CommentState state,
                    Instant createdAt,
-                   AggregateReference<Post, UUID> postId,
-                   AggregateReference<Account, UUID> accountId,
+                   AggregateReference<Post, String> postId,
+                   AggregateReference<Account, String> accountId,
                    boolean isNew) {
         this.id = id;
         this.content = content;
@@ -61,12 +60,12 @@ public class Comment implements Persistable<UUID> {
     }
 
     @PersistenceConstructor
-    public Comment(UUID id, 
+    public Comment(String id, 
                    String content, 
                    CommentState state,
                    Instant createdAt,
-                   AggregateReference<Post, UUID> postId,
-                   AggregateReference<Account, UUID> accountId) {
+                   AggregateReference<Post, String> postId,
+                   AggregateReference<Account, String> accountId) {
         this.id = id;
         this.content = content;
         this.state = state;

@@ -15,5 +15,5 @@ public final class CommentNativeQuerySQL {
                 AND state = 'OPENED'
                 AND id > 0
             LIMIT :start_page, :amount
-            """.formatted(AccountNativeQuerySQL.FIND_ALL);
+            """.formatted(AccountNativeQuerySQL.findAllStateActive);
 }

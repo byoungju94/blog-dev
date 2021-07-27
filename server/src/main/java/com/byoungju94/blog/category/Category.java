@@ -20,9 +20,7 @@ public class Category implements Persistable<Long> {
     @Id
     private Long id;
 
-    private String uuid;
     private String name;
-    private CategoryState state;
 
     @Transient
     private boolean isNew = true;
@@ -33,18 +31,15 @@ public class Category implements Persistable<Long> {
     }
 
     @Builder
-    public Category(String uuid, String name, CategoryState state) {
-        this.uuid = uuid;
+    public Category(String name, boolean isNew) {
         this.name = name;
-        this.state = state;
+        this.isNew = isNew;
     }
 
     @PersistenceConstructor
-    public Category(Long id, String uuid, String name, CategoryState state) {
+    public Category(Long id, String uuid, String name) {
         this.id = id;
-        this.uuid = uuid;
         this.name = name;
-        this.state = state;
         this.isNew = false;
     }
 

@@ -15,13 +15,60 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
-public class AccountRepositoryTests {
+class AccountRepositoryTests {
 
-    private final List<Account> account = List.of(
+    @Autowired
+    AccountRepository sut;
+
+    @BeforeAll
+    void initialize() {
+
+    }
+
+    @AfterAll
+    void cleanUp() {
+        sut.deleteAll();
+    }
+
+    @Test
+    void create() {
+        // given
+        var account = this.accounts.get(0);
+
+        // when
+        var actual = this.sut.save(account);
+
+        // then
+        assertEquals(account, actual);
+    }
+
+    @Test
+    void delete() {
+        // given
+        var account = this.accounts.get(0);
+        account.delete();
+
+        // when
+        this.sut.save(account);
+        var actual = this.sut.findByIdLatestEvent(account.getId());
+
+        // then
+        assertEquals(AccountState.DELETED.toString(), actual.status());
+    }
+
+    @Test
+    void findAllStateActive() {
+        // when
+        var accounts = this.sut.findAllStateActive();
+
+        // then
+        assertEquals(0, accounts.size());
+    }
+
+    private final List<Account> accounts = List.of(
         Account.builder()
             .id(UUID.randomUUID().toString())
             .username("byoungju94")
@@ -41,37 +88,4 @@ public class AccountRepositoryTests {
             .isNew(true)
             .build()        
     );
-
-    @Autowired
-    AccountRepository sut;
-
-    @BeforeAll
-    public void initialize() {
-
-    }
-
-    @AfterAll
-    public void clean() {
-        sut.deleteAll();
-    }
-
-    @Test
-    void create() {
-        // given
-        var account = this.account;
-
-        // when
-        var actual = this.sut.save(account);
-
-        // then
-        assertEquals(account, actual);
-    }
-
-    @Test
-    void findAll() {
-        // when
-        var accounts = this.sut.findAllStateActive();
-        assertEquals(1, accounts.size());
-    }
-    
 }

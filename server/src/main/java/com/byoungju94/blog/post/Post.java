@@ -1,8 +1,8 @@
 package com.byoungju94.blog.post;
 
 import java.time.Instant;
-import java.util.UUID;
 
+import com.byoungju94.blog.account.Account;
 import com.byoungju94.blog.category.Category;
 
 import org.springframework.context.ApplicationListener;
@@ -22,17 +22,20 @@ import lombok.Getter;
 
 @Getter
 @Table("tbl_post")
-public class Post implements Persistable<UUID> {
+public class Post implements Persistable<String> {
 
     @Id
-    private UUID id;
+    private String id;
 
     private String title;
     private PostState state;
     private Instant createdAt;
 
-    @Column("CATEGORY_ID")
-    private AggregateReference<Category, UUID> categoryId;
+    @Column("category_id")
+    private AggregateReference<Category, Long> categoryId;
+
+    @Column("account_id")
+    private AggregateReference<Account, String> accountId;
 
     @Transient
     private Boolean isNew = true;
@@ -43,16 +46,29 @@ public class Post implements Persistable<UUID> {
     }
 
     @Builder
-    public Post(String title, PostState state, Instant createdAt, AggregateReference<Category, UUID> categoryId) {
-        this.id = UUID.randomUUID();
+    public Post(String id, 
+                String title, 
+                PostState state, 
+                Instant createdAt, 
+                AggregateReference<Category, Long> categoryId, 
+                AggregateReference<Account, String> accountId,
+                boolean isNew) {
+        this.id = id;
         this.title = title;
         this.state = state;
         this.createdAt = createdAt;
+        this.accountId = accountId;
         this.categoryId = categoryId;
+        this.isNew = isNew;
     }
 
     @PersistenceConstructor
-    public Post(UUID id, String title, PostState state, Instant createdAt, AggregateReference<Category, UUID> categoryId) {
+    public Post(String id, 
+                String title, 
+                PostState state, 
+                Instant createdAt, 
+                AggregateReference<Category, Long> categoryId,
+                AggregateReference<Account, String> accountId) {
         this.id = id;
         this.title = title;
         this.state = state;

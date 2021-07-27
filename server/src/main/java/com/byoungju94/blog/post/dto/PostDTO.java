@@ -1,7 +1,6 @@
 package com.byoungju94.blog.post.dto;
 
 import java.time.Instant;
-import java.util.UUID;
 
-public record PostDTO(UUID uuid, String title, Instant createdAt) {
+public record PostDTO(String id, String title, String state, String createdAt) {
 }

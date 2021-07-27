@@ -35,6 +35,14 @@ public class Account implements Persistable<String> {
         return this.isNew;
     }
 
+    public void blocked() {
+        this.state = AccountState.BLOCKED;
+    }
+
+    public void delete() {
+        this.state = AccountState.DELETED;
+    }
+
     @Builder
     public Account(String id, String username, String password, String name, AccountState state, Instant createdAt, boolean isNew) {
         this.id = id;

@@ -7,4 +7,6 @@ import com.byoungju94.blog.account.dto.AccountReadDTO;
 public interface AccountReadRepository {
     
     List<AccountReadDTO> findAllStateActive();
+
+    AccountReadDTO findByIdLatestEvent(String id);
 }

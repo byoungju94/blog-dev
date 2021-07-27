@@ -30,6 +30,7 @@ CREATE TABLE tbl_account (
     state VARCHAR(30) CHECK (state in ('ACTIVE', 'LOCKED', 'DELETED'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-show tables;
-
-select * from tbl_account;
+CREATE TABLE tbl_category (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

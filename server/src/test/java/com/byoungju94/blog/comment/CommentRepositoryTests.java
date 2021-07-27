@@ -25,12 +25,12 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 @TestInstance(Lifecycle.PER_CLASS)
 public class CommentRepositoryTests {
 
-    private final AggregateReference<Account, UUID> accountId = AggregateReference.to(UUID.randomUUID());
-    private final AggregateReference<Post, UUID> postId = AggregateReference.to(UUID.randomUUID());
+    private final AggregateReference<Account, String> accountId = AggregateReference.to(UUID.randomUUID().toString());
+    private final AggregateReference<Post, String> postId = AggregateReference.to(UUID.randomUUID().toString());
 
     private final List<Comment> comments = List.of(
             Comment.builder()
-                .id(UUID.randomUUID())
+                .id(UUID.randomUUID().toString())
                 .content("thanks for sharing us!")
                 .state(CommentState.CREATED)
                 .createdAt(Instant.now())
@@ -39,7 +39,7 @@ public class CommentRepositoryTests {
                 .isNew(true)
                 .build(),
             Comment.builder()
-                .id(UUID.randomUUID())
+                .id(UUID.randomUUID().toString())
                 .content("i think that's wrong...")
                 .state(CommentState.UPDATED)
                 .createdAt(Instant.now())
@@ -94,7 +94,6 @@ public class CommentRepositoryTests {
             .accountId(accountId)
             .isNew(true)
             .build();
-
 
         // when
         newComment = this.sut.save(newComment);
