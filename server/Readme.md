@@ -167,5 +167,10 @@ server port is 8587
          -d "{\"id\": \"6eb2377c-eda9-4ec8-a6d4-0dd2215f0c2a\",\"content\": \"Thank's for write this article.\",\"postId\": \"d821770b-0a32-4937-a92e-02079ba41688\",\"accountId\": \"dd0b2a28-b3fe-4063-b456-0ec874564162\"}"
 ```
 
+- SwaggerUI
+```
+http://localhost:8587/swagger-ui.html
+```
+
 ## Aggregate Map
 https://file.byoungju94.me/aggregate_map.png
