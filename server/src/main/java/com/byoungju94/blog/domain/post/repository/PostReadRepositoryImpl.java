@@ -27,9 +27,9 @@ public class PostReadRepositoryImpl implements PostReadRepository {
     ));
 
     @Override
-    public List<PostDTO> findByCategoryIdWithPaging(String categoryId, Pageable pageable) {
+    public List<PostDTO> findByCategoryIdWithPaging(Long categoryId, Pageable pageable) {
         var param = new MapSqlParameterSource()
-                .addValue("categoryId", categoryId)
+                .addValue("categoryId", categoryId.toString())
                 .addValue("state", PostState.OPENED.toString())
                 .addValue("number", pageable.getPageNumber())
                 .addValue("size", pageable.getPageSize());

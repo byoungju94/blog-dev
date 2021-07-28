@@ -15,14 +15,14 @@ import java.time.Instant;
 public class ResponseEntityExceptionHandlerImpl extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<?> handleAllException(Exception ex, WebRequest request){
+    public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request){
         var response = new ExceptionResponse(Instant.now(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity<Object>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public final ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public final ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         var response = new ExceptionResponse(Instant.now(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity<Object>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

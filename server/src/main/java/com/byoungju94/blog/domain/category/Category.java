@@ -37,7 +37,7 @@ public class Category implements Persistable<Long> {
     }
 
     @PersistenceConstructor
-    public Category(Long id, String uuid, String name) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
         this.isNew = false;

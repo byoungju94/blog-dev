@@ -135,7 +135,7 @@ class PostRepositoryTests {
     void findByCategoryIdWithPaging() {
         //given
         var paging = PageRequest.of(0, 10);
-        var posts = sut.findByCategoryIdWithPaging(categoryId.toString(), paging);
+        var posts = sut.findByCategoryIdWithPaging(categoryId, paging);
         
         assertEquals(1, posts.size());
     }

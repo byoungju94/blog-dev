@@ -18,18 +18,17 @@ import java.time.Instant;
 
 @Getter
 @Table("tbl_content")
-public class Content implements Persistable<Long> {
+public class Content implements Persistable<String> {
 
     @Id
-    private Long id;
+    private String id;
 
-    private String uuid;
     private String filePath;
     private ContentState state;
     private Long orderNum;
     private Instant createdAt;
 
-    private AggregateReference<Post, Long> postId;
+    private AggregateReference<Post, String> postId;
 
     @Transient
     private boolean isNew = true;
@@ -44,19 +43,19 @@ public class Content implements Persistable<Long> {
     }
 
     @Builder
-    public Content(String filePath, String uuid, ContentState state, Long orderNum, AggregateReference<Post, Long> postId, Instant createdAt) {
+    public Content(String id, String filePath, ContentState state, Long orderNum, AggregateReference<Post, String> postId, Instant createdAt, boolean isNew) {
+        this.id = id;
         this.filePath = filePath;
-        this.uuid = uuid;
         this.state = state;
         this.orderNum = orderNum;
         this.postId = postId;
         this.createdAt = createdAt;
+        this.isNew = isNew;
     }
 
     @PersistenceConstructor
-    public Content(Long id, String uuid, String filePath, ContentState state, Long orderNum, AggregateReference<Post, Long> postId, Instant createdAt) {
+    public Content(String id, String filePath, ContentState state, Long orderNum, AggregateReference<Post, String> postId, Instant createdAt) {
         this.id = id;
-        this.uuid = uuid;
         this.filePath = filePath;
         this.state = state;
         this.orderNum = orderNum;

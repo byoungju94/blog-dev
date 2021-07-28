@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface PostReadRepository {
 
-    List<PostDTO> findByCategoryIdWithPaging(String categoryId, Pageable pageable);
+    List<PostDTO> findByCategoryIdWithPaging(Long categoryId, Pageable pageable);
 
     PostDTO findByIdLatestEvent(String id);
 }

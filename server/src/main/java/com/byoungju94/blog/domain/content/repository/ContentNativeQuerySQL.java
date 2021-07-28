@@ -7,15 +7,19 @@ public final class ContentNativeQuerySQL {
     public static final String findByPostId = """
             SELECT *
             FROM tbl_content as c1
-                INNER JOIN (SELECT MAX(id) as id FROM tbl_content GROUP BY uuid) as c2
-                ON c1.id = c2.id
-            WHERE post_id = :post_id AND state = :state
+                INNER JOIN (SELECT MAX(seq) as seq FROM tbl_content GROUP BY id) as seq
+                ON c1.seq = c2.seq
+            WHERE post_id = :postId 
+                AND state = :state
+                AND c1.seq > 0
             """;
 
-    public static final String findByLatestOfUuid = """
+    public static final String findByIdLatestEvent = """
             SELECT *
-            FROM tbl_content
-            GROUP BY uuid
-            HAVING uuid = :uuid
+            FROM tbl_content as c1
+                INNER JOIN (SELECT MAX(seq) as seq FROM tbl_content GROUP BY id) as c2
+                ON c1.seq = c2.seq
+            WHERE c1.seq = :id
+                AND c1.seq > 0
             """;
 }
