@@ -1,10 +1,9 @@
 # BLOG WEB APPLICATION
 
-## GIT Repository URL
-- https://github.com/byoungju94/blog-dev/tree/main/server
-
 ## URL
-- http://blog.byoungju94.me
+- github: https://github.com/byoungju94/blog-dev/tree/main/server
+- web: http://blog.byoungju94.me
+- frontend: https://github.com/byoungju94/blog-dev/tree/main/browser
 
 ## Language
 - JAVA, JDK 16
@@ -23,6 +22,7 @@
 - jdbc-mysql-connector
 
 ## Build And Execute This Application
+
 ### Need Two Database Connection
 - using mysql command line.
 ```sql
@@ -37,7 +37,7 @@ create database blog_dev_test;
 ```sql
 -- todoList
 --    1. some of column needs to be indexed.
---    2. change few colums data type into char instead of varchar.
+--    2. change some column datatype into char instead of varchar.
 
 CREATE TABLE tbl_post (
     seq INT NOT NULL AUTO_INCREMENT primary key,
@@ -86,6 +86,7 @@ CREATE TABLE tbl_category (
 
 ```
 
+- creating fatjar and execute spring application
 ```Bash
 ./mvn clean install
 java -jar ./target/blog-0.0.1-SNAPSHOT.jar
