@@ -99,7 +99,7 @@ spring.datasource.password=root
 
 - Creating FatJar And Execute Spring Application
 ```Bash
-./mvn clean install
+./mvn clean install package
 java -jar ./target/blog-0.0.1-SNAPSHOT.jar
 
 server port is 8587
