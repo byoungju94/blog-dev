@@ -4,7 +4,7 @@ public final class AccountNativeQuerySQL {
 
     private AccountNativeQuerySQL() { }
     
-    public static final String findAllStateActive = """
+    static final String findAllStateActive = """
             SELECT *
             FROM tbl_account as a1
                 INNER JOIN (SELECT MAX(seq) as seq FROM tbl_account GROUP BY id) as a2
@@ -13,7 +13,7 @@ public final class AccountNativeQuerySQL {
                 AND a1.seq > 0
             """;
 
-    public static final String findById = """
+    static final String findById = """
             SELECT *
             FROM tbl_account as a1
                 INNER JOIN (SELECT MAX(seq) as seq FROM tbl_account GROUP BY id) as a2

@@ -1,6 +1,5 @@
 package com.byoungju94.blog.post.repository;
 
-import java.time.Instant;
 import java.util.List;
 
 import com.byoungju94.blog.post.PostState;
