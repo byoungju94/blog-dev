@@ -1,6 +1,7 @@
 package com.byoungju94.blog.controller;
 
 import com.byoungju94.blog.domain.comment.Comment;
+import com.byoungju94.blog.domain.comment.CommentState;
 import com.byoungju94.blog.domain.comment.dto.CommentDTO;
 import com.byoungju94.blog.domain.comment.dto.CommentEventDTO;
 import com.byoungju94.blog.domain.comment.repository.CommentRepository;
@@ -34,21 +35,22 @@ public class CommentController {
 
     @PatchMapping("/{commentId}")
     public Comment update(@RequestBody CommentEventDTO dto) {
-        var comment = this.mappingEventToComment(dto);
+        var comment = this.mappingEventToComment(dto, CommentState.UPDATED);
         return this.repository.save(comment);
     }
 
     @DeleteMapping("/{commentId}")
     public Comment delete(@RequestBody CommentEventDTO dto) {
-        var comment = this.mappingEventToComment(dto);
+        var comment = this.mappingEventToComment(dto, CommentState.DELETED);
         return this.repository.save(comment);
     }
 
-    private Comment mappingEventToComment(CommentEventDTO dto) {
+    private Comment mappingEventToComment(CommentEventDTO dto, CommentState state) {
         return Comment.builder()
                 .id(dto.id())
                 .content(dto.content())
                 .createdAt(Instant.now())
+                .state(state)
                 .postId(AggregateReference.to(dto.postId()))
                 .accountId(AggregateReference.to(dto.accountId()))
                 .isNew(true)

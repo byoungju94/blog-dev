@@ -13,6 +13,7 @@
 - Event Sourcing
 - CQRS
 - RESTFUL API
+- Test Driven Development
 
 ## Dependencies
 - spring-boot-starter
@@ -33,9 +34,9 @@ create database blog_dev;
 create database blog_dev_test;
 ```
 
-- generate table into two database using below DDL (./src/main/resources/schema.sql)
+- generate table into two database using below DDL `./src/main/resources/schema.sql`
 ```sql
--- todoList
+-- TodoList
 --    1. some of column needs to be indexed.
 --    2. change some column datatype into char instead of varchar.
 
@@ -83,11 +84,88 @@ CREATE TABLE tbl_category (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+```   
 
+- You can also change `DataSource` configuration.
+- application.properties files are in 
+- `./src/main/resources/application.properties`
+- `./src/test/resources/application.properties`
 ```
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/blog_dev?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+spring.datasource.username=root
+spring.datasource.password=root
+```   
 
-- creating fatjar and execute spring application
+- Creating FatJar And Execute Spring Application
 ```Bash
 ./mvn clean install
 java -jar ./target/blog-0.0.1-SNAPSHOT.jar
+
+server port is 8587
 ```
+
+## API
+- Category
+```bash
+- retrieveAll
+    curl http://localhost:8587/api/v1/category/all
+        -H "Accept: application/json"
+
+- retrieve
+    curl http://localhost:8587/api/v1/category/`{id}`
+        -H "Accept: application/json"
+
+- create
+    curl -X POST http://localhost:8587/api/v1/category 
+         -H "Content-Type: application/json" 
+         -H "Accept: application/json" 
+         -d "{\"name\": \"Java\"}"
+```   
+
+- Account
+```
+
+```   
+
+- Post
+```bash
+- retrieveAll
+    curl http://localhost:8587/api/v1/post/all
+        -H "Accept: application/json"
+
+- retrieve
+    curl http://localhost:8587/api/v1/post/`{id}`
+        -H "Accept: application/json"
+```
+
+- Content
+```bash
+
+```   
+
+- Comment
+```bash
+- retrieveAll
+    curl http://localhost:8587/api/v1/category/all
+        -H "Accept: application/json"
+
+- retrieve
+    curl http://localhost:8587/api/v1/category/`{id}`
+        -H "Accept: application/json"
+
+- update
+    curl -X POST http://localhost:8587/api/v1/category 
+         -H "Content-Type: application/json" 
+         -H "Accept: application/json" 
+         -d "{\"id\": \"6eb2377c-eda9-4ec8-a6d4-0dd2215f0c2a\",\"content\": \"Thank's for write this article.\",\"postId\": \"d821770b-0a32-4937-a92e-02079ba41688\",\"accountId\": \"dd0b2a28-b3fe-4063-b456-0ec874564162\"}"
+
+- delete
+    curl -X DELETE http://localhost:8587/api/v1/category 
+         -H "Content-Type: application/json" 
+         -H "Accept: application/json" 
+         -d "{\"id\": \"6eb2377c-eda9-4ec8-a6d4-0dd2215f0c2a\",\"content\": \"Thank's for write this article.\",\"postId\": \"d821770b-0a32-4937-a92e-02079ba41688\",\"accountId\": \"dd0b2a28-b3fe-4063-b456-0ec874564162\"}"
+```
+
+## Aggregate Map
+https://file.byoungju94.me/aggregate_map.png
